@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<link rel="stylesheet" href="login.css">
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<body>
+  <div class="navbar">
+    <img src="logo.png" alt="GITAM" class="logo">
+    <ul>
+      <li><a href="signUp.html">SIGN UP</a></li>
+      <li><a href="index.html">HOME</a></li>
+    </ul>
+  </div>
+<div class="login-box">
+  <h2>Login</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" name="" required id="RegNo">
+      <label>Reg Number</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="" required id="pass">
+      <img src="eye close.png" id="eyeicon" alt="eye-close" style="width: 2rem; cursor: pointer;">
+      <label>Password</label>
+    </div>
+
+    <script src="login2.js"></script>
+
+    
+    <button type="button" id="LoginBtn"><span></span>LOGIN</button>
+  </form>
+  <button type="submit" id="submitBtn" class="btn1"><span></span>FORGOT PASSWORD ???</button>
+</div>
+</body>
+<script type="module" src="login.js"></script>
+</html>

@@ -1,0 +1,9 @@
+body{
+    background-image: url(alum.jpg);
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+::-webkit-scrollbar{
+    width: 0px;
+}

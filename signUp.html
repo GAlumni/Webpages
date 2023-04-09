@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<link rel="stylesheet" href="signUp.css">
+<body>
+  <div class="navbar">
+    <img src="logo.png" alt="GITAM" class="logo">
+    <ul>
+      <li><a href="login.html">LOGIN</a></li>
+      <li><a href="index.html">HOME</a></li>
+    </ul>
+    <div class="sign-box">
+        <h2>REGISTER HERE</h2>
+        <form>
+          <div class="user-box">
+            <input type="text" name="fname" id="fname" required>
+            <label for="fname">First Name</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="lname" id="lname" required>
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="user-box">
+            <input type="number" name="rno" id="regno" required>
+            <label for="rno">Reg Number</label>
+          </div>
+          <div class="user-box">
+            <input type="email" name="mail" id="email" required>
+            <label for="mail">Mail Id</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="pass1" id="password" required>
+            <label for="pass1">Enter Password</label>
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <div class="user-box">
+            <input type="password" name="pass2" id="cpassword" required>
+            <i class="fa-solid fa-eye"></i>
+            <label for="pass2">Confirm Password</label>
+            <img src="eye close.png" id="eyeicon" alt="eye-close" style="width: 2rem; cursor: pointer;">
+          </div>
+          <button type="button" id="submitData" name="submitData"><span></span>Submit</button>
+        </form>
+      </div>
+</body>
+</html>
+<script>
+  let eyeicon=document.getElementById("eyeicon");
+  let password=document.getElementById("password");
+  let cpassword = document.getElementById("cpassword");
+
+  eyeicon.onclick=function(){
+    if(password.type=="password" && cpassword.type == "password"){
+      password.type="text";
+      cpassword.type = "text";
+      eyeicon.src="eye open.png";
+    }
+    else{
+      password.type="password";
+      cpassword.type = "password";
+      eyeicon.src="eye close.png";
+    }
+  }
+
+</script>
+<script type="module">
+
+//Getting user input
+var fnameBox = document.getElementById("fname");
+var lnameBox = document.getElementById("lname");
+var regnoBox = document.getElementById("regno");
+var emailBox = document.getElementById("email");
+var passwordBox = document.getElementById("password");
+var cpasswordBox = document.getElementById("cpassword");
+
+// Buttons input
+var submitBtn = document.getElementById("submitData");
+
+// Entries validation
+var letters = /^[A-Za-z]+$/;  
+var email_val = /^([a-zA-Z0-9_\.\-])+\@(([gitam\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
+
+// Firebase connection
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAvcixpDb4BOIevoD9c4h8mDdGenk_3coE",
+  authDomain: "g-alumni-352f2.firebaseapp.com",
+  databaseURL: "https://g-alumni-352f2-default-rtdb.firebaseio.com",
+  projectId: "g-alumni-352f2",
+  storageBucket: "g-alumni-352f2.appspot.com",
+  messagingSenderId: "639725044627",
+  appId: "1:639725044627:web:af0d3fc58897764a911e66",
+  measurementId: "G-18B0GX5D5T",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+import {getDatabase, ref, set}
+from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+const db = getDatabase();
+
+// Functions:=
+
+function checkPassword(){
+  if(fnameBox.value==''||lnameBox.value==''||regnoBox.value==''||emailBox.value==''||passwordBox.value==''||cpasswordBox.value==''){  
+    alert("Enter each details correctly");
+    return;
+  }
+  else if(!(letters.test(fnameBox.value))&&(letters.test(lnameBox.value))){
+    alert('Name is incorrect must contain alphabets only');
+    return;
+  }  
+  else if (!email_val.test(emailBox.value)){
+    alert('Invalid email format. Enter valid gitam email id'); 
+    return; 
+  }  
+  else if(passwordBox.value!=cpasswordBox.value){  
+    alert("Passwords not matching");
+    return;  
+  }  
+  else if(regnoBox.value.length < 12){  
+    alert("RegNo minimum length is 12");
+    return;  
+  }  
+  else if((passwordBox.value.length > 12)||(passwordBox.value.length<6)){  
+    alert("Password length must be between 6 to 12"); 
+    return; 
+  }  
+  else if(passwordBox.value != cpasswordBox.value){
+    alert("Password Fields must be same...");
+    return;
+  }
+  else{  
+
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, emailBox.value, passwordBox.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    alert("Success!!..."); 
+    alert("Verification Link Sent");
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+    // Email verification sent!
+    // ...
+    
+    });
+    insertData();
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    alert("User Exists...");
+  }); 
+    
+  } 
+}
+
+// Inserting data when validation is done.
+
+function insertData() {
+  set(ref(db, "SignUpTable/" + regnoBox.value),{
+    RegistrationNo: regnoBox.value,
+    FirstName: fnameBox.value,
+    LastName: lnameBox.value,
+    Email: emailBox.value
+  })
+    .then(() => {
+      window.location = "home.html";
+    })
+    .catch((error) => {
+      alert("Error!!.. Try Again" + error);
+    });
+}
+
+// function encPass(){
+//   var pass1 = CryptJS.AES.encrypt(passwordBox.value,passwordBox.value);
+//   return pass12.toString();
+// }
+
+// Event Listner
+submitBtn.addEventListener("click", checkPassword);
+cpasswordBox.addEventListener("keyup", (e) =>{
+    if(e.keyCode === 13){
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
+
+</script>

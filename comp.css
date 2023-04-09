@@ -1,0 +1,9 @@
+body{
+    background-image: url('https://lh3.googleusercontent.com/cGQm-RMllxHHE0Fl4BTXOnPYxzpTVLGxIAdhi0QYKaCgPMstZjZd8zxjkgYUiu8kpAN2vuorYJFC0QJtRKY13iPjgYIE1VuXOEVuAXHj');
+    background-position: centre;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+::-webkit-scrollbar{
+    width: 0px;
+}

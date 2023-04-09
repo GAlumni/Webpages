@@ -1,0 +1,10 @@
+body{
+    background-image: url('https://lh3.googleusercontent.com/28loyb4IdMPsqMw3l-pmzgROA9AQ0EHoTw7HMzPLwd-crVy76EVulb0e4U6T39pXHRkuyB2Hix18D-OPMwqt0s8F9b74364dGDdMM6axi9M');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+}
+::-webkit-scrollbar{
+    width: 0px;
+}

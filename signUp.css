@@ -1,0 +1,160 @@
+html {
+    height: 100%;
+  }
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background-image:linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.4)), url(background.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar{
+    width: 95%;
+    margin-left: 50px;
+    margin-right: 20px;
+    padding: 35px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+  width: 160px;
+}
+.navbar ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+.navbar ul li a{
+  text-decoration: none;
+  color: aliceblue;
+}
+.navbar ul li::after{
+  content: '';
+  height: 3px;
+  width: 0;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
+}
+.navbar ul li:hover::after{
+  width: 100%;
+}
+  .sign-box {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    /* background: rgba(0,0,0,.5); */
+    box-sizing: border-box;
+    /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .sign-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 35px;
+  }
+  
+  .sign-box .user-box {
+    position: relative;
+  }
+  
+  .sign-box .user-box input {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .sign-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .sign-box .user-box input:focus ~ label,
+  .sign-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #009688;
+    font-size: 12px;
+  }
+  
+  .sign-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #009688;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+  
+  button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 30px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: aliceblue;
+    cursor: pointer;
+    position: relative;
+    overflow: hiddens;
+}
+span{
+    background: #009688;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+button:hover span{
+    width: 100%;
+}
+button:hover{
+    border: none;
+}
+.sign-box .user-box input:-webkit-autofill{
+  box-shadow: 0 0 0 30px #001410 inset;
+  border: none;
+  -webkit-text-fill-color: #fff;
+}
+.sign-box .user-box input:-webkit-autofill:focus{
+  -webkit-box-shadow: 0 0 0 30px #001410 inset;
+  -webkit-text-fill-color: #fff;
+  -webkit-border-image: none;
+}

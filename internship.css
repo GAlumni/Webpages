@@ -1,0 +1,10 @@
+body{
+    background-image: url(intern.jpg);
+    background-position: top; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+}
+::-webkit-scrollbar{
+    width: 0px;
+}
