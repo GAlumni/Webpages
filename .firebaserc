@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "webhosting-71ca2"
+  },
+  "targets": {
+    "webhosting-71ca2": {
+      "hosting": {
+        "trgal": [
+          "galumni"
+        ],
+        "trccd": [
+          "g-alumni-352f2"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
