@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Table Entry</title>
+    <style>
+      label {
+        display: inline-block;
+        width: 80px;
+      }
+      input,
+      select {
+        width: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Branch</label> <br><input id="Branchbox" type="text" /><br>
+    <label>Company Name</label> <br><input id="Companynamebox" type="text" /><br />
+    <label>JobRole</label><br> <input id="Jobrolebox" type="text" /><br />
+    <label>TechnicalSkills</label> <br><input id="Technicalskillsbox" type="text" /><br />
+    <label>RecruitmentMonth</label> <br><input id="Recruitmentmonthbox" type="text" /><br />
+    <label>Package</label> <br><input id="Packagebox" type="text" />
+
+    <hr />
+
+    <button id="Insbtn">INSERT</button> &nbsp;
+    <button id="Updbtn">UPDATE</button> &nbsp;
+    <button id="Delbtn1">DELETE Company</button> &nbsp;
+    <button id="Delbtn2">DELETE Branch</button> &nbsp;
+
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDxUVdsa48sVACNVOAAOWzQRMOqOLyDfoU",
+          authDomain: "companydata-c196c.firebaseapp.com",
+          projectId: "companydata-c196c",
+          storageBucket: "companydata-c196c.appspot.com",
+          messagingSenderId: "1003935607451",
+          appId: "1:1003935607451:web:d9e8c3dbeb940161b7743e"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {
+        getDatabase,
+        ref,
+        set,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+      const db = getDatabase();
+
+
+      var Branchbox = document.getElementById("Branchbox");
+      var jobrolebox = document.getElementById("Jobrolebox");
+      var companynamebox = document.getElementById("Companynamebox");
+      var technicalskillsbox = document.getElementById("Technicalskillsbox");
+      var linkbox = document.getElementById("Recruitmentmonthbox");
+      var packagebox = document.getElementById("Packagebox");
+
+      var insbtn = document.getElementById("Insbtn");
+      var updbtn = document.getElementById("Updbtn");
+      var delbtn1 = document.getElementById("Delbtn1");
+      var delbtn2 = document.getElementById("Delbtn2");
+
+      function InsertData() {
+        set(ref(db, Branchbox.value + "/" + companynamebox.value), {
+          CompanyName: companynamebox.value,
+          JobRole: jobrolebox.value,
+          TechnicalSkills: technicalskillsbox.value,
+          RMon: linkbox.value,
+          Package: packagebox.value
+        })
+          .then(() => {
+            alert("data stored sucessfully");
+          })
+          .catch((error) => {
+            alert("unsucessful error" + error);
+          });
+      }
+
+      function UpdateData() {
+        update(ref(db, Branchbox.value + "/" + companynamebox.value), {
+            JobRole: jobrolebox.value,
+          TechnicalSkills: technicalskillsbox.value,
+          RMon: linkbox.value,
+          Package: packagebox.value
+        })
+          .then(() => {
+            alert("data updated successfully");
+          })
+          .catch((error) => {
+            alert("unsucceessful error " + error);
+          });
+      }
+
+      function DeleteData1() {
+        remove(ref(db, Branchbox.value + "/" + companynamebox.value))
+          .then(() => {
+            alert("data removed sucessfully");
+          })
+          .catch((error) => {
+            alert("unsucessful, error" + error);
+          });
+      }
+
+      function DeleteData2() {
+        remove(ref(db, Branchbox.value))
+          .then(() => {
+            alert("Batch removed sucessfully");
+          })
+          .catch((error) => {
+            alert("unsucessful, error" + error);
+          });
+      }
+      insbtn.addEventListener("click", InsertData);
+      updbtn.addEventListener("click", UpdateData);
+      delbtn1.addEventListener("click", DeleteData1);
+      delbtn2.addEventListener("click", DeleteData2);
+    </script>
+  </body>
+</html>
